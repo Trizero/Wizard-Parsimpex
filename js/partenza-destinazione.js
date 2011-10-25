@@ -100,10 +100,13 @@
       var id, data;
       id = $(this).attr('data-result_id');
       data = addresses[id];
-      request.start = data;
+      request[startStop] = data;
       $('#hidden_fld').val(JSON.stringify(request));
       $('form').submit();
     });
+    
+    request = JSON.parse(request_json);
+    $('#hidden_fld').val(request_json);
     
     makeMap();
   });
