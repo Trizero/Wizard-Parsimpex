@@ -1,3 +1,6 @@
+<?php
+$action = (isset($_POST['action'])) ? $_POST['action']: 'destinazione.php';
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +12,7 @@
     <label for="address_fld">Indirizzo</label>
     <input type="search" name="address" id="address_fld" x-webkit-speech speech /> <input type="button" id="verify_btn" value="verifica" /><br />
     <div id="map_canvas" style="width:500px; height:300px"></div>
-    <form method="POST" action="destinazione.php">
+    <form method="POST" action="<?= $action ?>">
       <input type="hidden" name="hidden_data" id="hidden_fld" />
     </form>
     <script type="text/javascript">
