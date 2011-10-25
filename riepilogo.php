@@ -9,6 +9,8 @@ $destinazione = $request->destinazione->formatted_address;
 <html>
   <head>
     <title>Riepilogo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
   </head>
   <body>
     <h1>Riepilogo</h1>

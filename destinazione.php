@@ -5,6 +5,8 @@ $action = (isset($_POST['action'])) ? $_POST['action']: 'riepilogo.php';
 <html>
   <head>
     <title>Destinazione</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
   </head>
   <body>
     <h1>Destinazione</h1>

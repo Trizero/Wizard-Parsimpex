@@ -5,6 +5,8 @@ $action = (isset($_POST['action'])) ? $_POST['action']: 'destinazione.php';
 <html>
   <head>
     <title>Partenza</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
   </head>
   <body>
     <h1>Partenza</h1>

@@ -92,6 +92,14 @@
             
             markers.push(marker);
           }
+        } else if(status === 'ZERO_RESULTS') {
+          alert('Nessun risulatato trovato');
+        } else if(status === 'OVER_QUERY_LIMIT') {
+          alert('Limite di richieste superato');
+        } else if(status === 'REQUEST_DENIED') {
+          alert('La tua richiesta è stata rifiutata da Google Maps');
+        } else if(status === 'INVALID_REQUEST') {
+          alert('La tua richiesta non è valida');
         }
       });
     }
