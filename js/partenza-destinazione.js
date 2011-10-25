@@ -4,7 +4,30 @@
         rome = new google.maps.LatLng(41.442726,12.392578),
         startZoom = 1,
         markers, addresses,
-        request = {};
+        request = {},
+        // types on http://code.google.com/apis/maps/documentation/geocoding/#Types
+        allowed_types = ['street_address', 'route', 'intersection', 'political', 'locality', 'sublocality'];
+    
+    function isIntersectionNull(a, b) {
+      var i, j;
+      
+      for(i = 0; i < a.length; i++) {
+        for(j = 0; j < b.length; j++) {
+          if(a[i] === b[j]) return false;
+        }
+      }
+      return true;
+    }
+    
+    Array.prototype.clean = function(deleteValue) {
+      for (var i = 0; i < this.length; i++) {
+        if (this[i] == deleteValue) {         
+          this.splice(i, 1);
+          i--;
+        }
+      }
+      return this;
+    };
     
     function makeMap() {
       var myOptions, lastInfoWindow;
@@ -50,7 +73,7 @@
       // Effettua richiesta a google maps
       geocoder = new google.maps.Geocoder();
       geocoder.geocode({ 'address': query }, function(results, status){
-        var i, result, lat, lng, latlng, marker, infoWindow, infoWindowContent;
+        var i, result, lat, lng, latlng, marker, infoWindow, infoWindowContent, types;
         
         if(typeof markers !== "undefined" && markers !== null) {
           for(i = 0; i < markers.length; i++) {
@@ -62,7 +85,19 @@
         markers = [];
         
         if(status === 'OK') {
+          for(i = 0; i < results.length; i++) {
+            result = results[i];
+            types = result.types;
+            if(isIntersectionNull(types, allowed_types)) {
+              delete results[i];
+            }
+          }
+          results.clean();
           addresses = results;
+          if(addresses.length === 0) {
+            alert('Nessun risulatato trovato');
+            return;
+          }
           
           for(i = 0; i < results.length; i++) {
             result = results[i];
